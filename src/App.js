@@ -14,6 +14,7 @@ const colors = [
 function App() {
   const [color, setColor] = useState("gold");
   const [counter, setCounter] = useState(0);
+  const [defaultFontColor, setDefaultFontColor] = useState(true);
 
   function changeColor() {
     const chooseIndex = Math.floor(Math.random() * colors.length);
@@ -26,13 +27,23 @@ function App() {
     setCounter(0)
   }
 
+  function toggleFontColor() {
+    setDefaultFontColor(!defaultFontColor);
+  }
+
   return (
     <div style={{ height: "100vh", backgroundColor: color }}>
       <button onClick={changeColor}>Change color</button>
       <h2>{color}</h2>
-      <h3>The color has been changed {counter} times</h3>
+      {/* <h3>The color has been changed {counter} times</h3> */}
+      
+      <h3 style={defaultFontColor ? { color: "black" } : { color: "white" }}>
+      The color has been changed {counter} times
+      </h3>
       <button onClick={resetCounter}>Reset Counter</button>
-    </div>
+      <button onClick={toggleFontColor}>Toggle font color</button>
+
+      </div>
   );
 }
 
