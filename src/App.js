@@ -1,23 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+
+// App.js
+const colors = [
+  "papayawhip",
+  "thistle",
+  "peachpuff",
+  "lightgoldenrodyellow",
+  "paleturquoise",
+];
 
 function App() {
+  const [color, setColor] = useState("gold");
+  const [counter, setCounter] = useState(0);
+
+  function changeColor() {
+    const chooseIndex = Math.floor(Math.random() * colors.length);
+    setColor(colors[chooseIndex]);
+    setCounter(counter + 1);
+
+  }
+
+  function resetCounter() {
+    setCounter(0)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: "100vh", backgroundColor: color }}>
+      <button onClick={changeColor}>Change color</button>
+      <h2>{color}</h2>
+      <h3>The color has been changed {counter} times</h3>
+      <button onClick={resetCounter}>Reset Counter</button>
     </div>
   );
 }
